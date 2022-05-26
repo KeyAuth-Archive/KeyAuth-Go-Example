@@ -57,7 +57,7 @@ import (
 
 
     func Init() {
-        if (CheckIFEmpty() == true) {
+        if (CheckIFEmpty()) {
             error(" \n\n Application not setupped correctly")
         }
 
