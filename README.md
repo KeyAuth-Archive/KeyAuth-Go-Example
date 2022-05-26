@@ -1,2 +1,2 @@
 # KeyAuth-Go-Example
-Soon, Created by mazkdevf and XTR#3850
+Soon, Created by mazkdevf and XTRDevv
