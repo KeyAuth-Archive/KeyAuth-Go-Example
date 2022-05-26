@@ -10,7 +10,7 @@
   
 4. Change Lines `17-19` **main.go** to your KeyAuth details
   
-5. Open CMD / Terminal and open project folder  ("cd Desktop", "cd KeyAuth-Go-Example")
+5. Open CMD / Terminal and open project folder  ("cd Desktop", "cd KeyAuth-Go-Example-Main")
   
 6. To Run use `go run .` or `go run main.go`
   
