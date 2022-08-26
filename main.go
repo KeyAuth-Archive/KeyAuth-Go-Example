@@ -19,9 +19,9 @@ var ownerid = ""
 var version = "1.0"
 
 //* API SET UP VALUES ^^^^ *//
-var username = ""; //* Keep Clear
-var password = ""; //* Keep Clear
-var key = "";      //* Keep Clear
+var username = "" //* Keep Clear
+var password = "" //* Keep Clear
+var key = ""      //* Keep Clear
 
 func main() {
 	b.Api(name, ownerid, version) // Important to set up the API Details
@@ -31,7 +31,7 @@ func main() {
 	ClearConsole()
 
 	fmt.Println("\n\n Connecting..")
-    b.Init()
+	b.Init()
 
 	fmt.Println("\n App Data:")
 	fmt.Println(" Number of users:", b.NumUsers)
@@ -51,71 +51,70 @@ func main() {
 	char, _, err := reader.ReadRune()
 
 	if err != nil {
-	  fmt.Println(err)
-	  os.Exit(0)
+		fmt.Println(err)
+		os.Exit(0)
 	}
-	
+
 	switch char {
 	case '1':
-	  reader := bufio.NewReader(os.Stdin)
+		reader := bufio.NewReader(os.Stdin)
 
+		fmt.Println("\n\n Enter Username: ")
+		username, _ := reader.ReadString('\n')
+		username = strings.TrimSuffix(username, "\n")
 
-	  fmt.Println("\n\n Enter Username: ")
-	  username, _ := reader.ReadString('\n')
-	  username = strings.TrimSuffix(username, "\n")
+		fmt.Println("\n\n Enter Password: ")
+		password, _ := reader.ReadString('\n')
+		password = strings.TrimSuffix(password, "\n")
 
-	  fmt.Println("\n\n Enter Password: ")
-	  password, _ := reader.ReadString('\n')
-	  password = strings.TrimSuffix(password, "\n")
+		b.Login(username, password)
 
-	  b.Login(username, password)
-
-	  break
+		break
 	case '2':
-	  reader := bufio.NewReader(os.Stdin)
-	  fmt.Println("\n\n Enter Username: ")
-	  username, _ := reader.ReadString('\n')
-	  username = strings.TrimSuffix(username, "\n")
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Println("\n\n Enter Username: ")
+		username, _ := reader.ReadString('\n')
+		username = strings.TrimSuffix(username, "\n")
 
-	  fmt.Println("\n\n Enter Password: ")
-	  password, _ := reader.ReadString('\n')
-	  password = strings.TrimSuffix(password, "\n")
+		fmt.Println("\n\n Enter Password: ")
+		password, _ := reader.ReadString('\n')
+		password = strings.TrimSuffix(password, "\n")
 
-	  fmt.Println("\n\n Enter License: ")
-	  key, _ := reader.ReadString('\n')
-	  key = strings.TrimSuffix(key, "\n")
+		fmt.Println("\n\n Enter License: ")
+		key, _ := reader.ReadString('\n')
+		key = strings.TrimSuffix(key, "\n")
 
-	  b.Register(username, password, key)
+		b.Register(username, password, key)
 
-	  break
-    case '3':
-	  reader := bufio.NewReader(os.Stdin)
+		break
+	case '3':
+		reader := bufio.NewReader(os.Stdin)
 
-	  fmt.Println("\n\n Enter Username: ")
-	  username, _ := reader.ReadString('\n')
-	  username = strings.TrimSuffix(username, "\n")
+		fmt.Println("\n\n Enter Username: ")
+		username, _ := reader.ReadString('\n')
+		username = strings.TrimSuffix(username, "\n")
 
-	  fmt.Println("\n\n Enter License: ")
-	  key, _ := reader.ReadString('\n')
-	  key = strings.TrimSuffix(key, "\n")
+		fmt.Println("\n\n Enter License: ")
+		key, _ := reader.ReadString('\n')
+		key = strings.TrimSuffix(key, "\n")
 
-	  b.Upgrade(username, key)
+		b.Upgrade(username, key)
 
-	  break
-    case '4':
-	  reader := bufio.NewReader(os.Stdin)
-	  
-	  fmt.Println("\n\n Enter License: ")
-	  key, _ := reader.ReadString('\n')
-	  key = strings.TrimSuffix(key, "\n")
+		break
+	case '4':
+		reader := bufio.NewReader(os.Stdin)
 
-	  b.License(key)
+		fmt.Println("\n\n Enter License: ")
+		key, _ := reader.ReadString('\n')
+		key = strings.TrimSuffix(key, "\n")
 
-	  break
+		b.License(key)
+
+		break
 	default:
-	  fmt.Println("\n\n Invalid Selection")
-	  os.Exit(0)
-	  break
+		fmt.Println("\n\n Invalid Selection")
+		os.Exit(0)
+		break
 	}
 
 	fmt.Println("\n User data:")
@@ -133,7 +132,7 @@ func main() {
 	b.SetVar("VariableName", "VariableData") // Set up User Variable
 	b.GetVar("VariableName") // Get User Variable
 
-	* Get Public Variables * - https://keyauth.win/dashboard/app/variables/
+	* Get Public Variables * - https://keyauth.cc/dashboard/app/variables/
 
 	b.Var("VariableName") // Get Public Variable
 
@@ -141,7 +140,7 @@ func main() {
 	var publicVariable = b.Var("VariableName")
 	fmt.Println("Variable Content: " + publicVariable)
 
-	* Webhooks * - https://keyauth.win/dashboard/app/webhooks/
+	* Webhooks * - https://keyauth.cc/dashboard/app/webhooks/
 	b.Webhook("WebhookName", "WebhookData") // Send Webhook
 
 	Example:
@@ -149,11 +148,9 @@ func main() {
 	var WbData = b.Webhook("Webhook ID", "?type=test")
 	fmt.Println("Webhook Data: " + WbData)
 
-	* Logs * - https://keyauth.win/dashboard/app/settings/
+	* Logs * - https://keyauth.cc/dashboard/app/settings/
 	b.Log("Message") // Send Log to Webhook of your choice ^^
 	*/
-
-
 
 	fmt.Println("\n Closing in ten seconds...")
 	time.Sleep(10 * time.Second)
@@ -162,24 +159,24 @@ func main() {
 
 func init() {
 
-    clear = make(map[string]func())
-    clear["linux"] = func() { 
-        cmd := exec.Command("clear")
-        cmd.Stdout = os.Stdout
-        cmd.Run()
-    }
-    clear["windows"] = func() {
-        cmd := exec.Command("cmd", "/c", "cls")
-        cmd.Stdout = os.Stdout
-        cmd.Run()
-    }
+	clear = make(map[string]func())
+	clear["linux"] = func() {
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	}
+	clear["windows"] = func() {
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	}
 }
 
 func ClearConsole() {
-    value, ok := clear[runtime.GOOS]
-    if ok {
-        value()
-    } else {
-        panic("Your platform is unsupported! I can't clear terminal screen :(")
-    }
+	value, ok := clear[runtime.GOOS]
+	if ok {
+		value()
+	} else {
+		panic("Your platform is unsupported! I can't clear terminal screen :(")
+	}
 }

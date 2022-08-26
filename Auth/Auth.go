@@ -418,7 +418,7 @@ func FetchOnline() string {
 	}
 
 	if result.Success == true {
-		/**/
+		return ""
 	} else {
 		return ""
 	}
