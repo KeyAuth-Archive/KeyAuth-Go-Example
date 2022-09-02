@@ -1,7 +1,6 @@
 ## **KeyAuth Go Example**
 
 - GO Example for **KeyAuth**
-- Thanks to **[XTRDevv](https://github.com/XTRDevv)** ✔️
 
 ------
 ### **Installation**
